@@ -8,7 +8,6 @@
 typedef struct s_map
 {
 	char		**map;
-	char		*line;
 	int			map_is_valid;
 	int			empty;
 	int			wall;
@@ -38,6 +37,10 @@ int				get_map(int fd, t_map set_map);
 char			**populate_2d_map(t_map new_map, char *line, int index);
 short			get_map_height(char *map);
 char			**set_map(t_map new_map, char *map);
+
+/** print_error.c **/
+void			free_str_arr(char **be_freed);
+void			invalid_map(void);
 
 /** so_long.c **/
 // void			start_game(t_game *game);

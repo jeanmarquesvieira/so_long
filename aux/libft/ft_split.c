@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 14:48:06 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/16 14:23:54 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:09:29 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,26 +93,3 @@ char	**ft_split(char const *s, char c)
 	populate_array(s, c, final_arr, delimiters_num);
 	return (final_arr);
 }
-
-// int	main(void)
-// {
-// 	int		i;
-// 	char	c;
-// 	char	s1[] = "this is a test";
-// 	char	**split1;
-
-// 	i = 0;
-// 	c = ' ';
-// 	// char s2[] = "    a   b   c  d     ";
-// 	// char s3[] = "";
-// 	// char s4[] = " ";
-// 	split1 = ft_split(s1, c);
-// 	// char **split2 = ft_split(s2, c);
-// 	// char **split3 = ft_split(s3, c);
-// 	// char **split4 = ft_split(s4, c);
-// 	if (!split1)
-// 		return (printf("null value returned\n"));
-// 	while (split1[i])
-// 		printf("s1: %s\n", split1[i++]);
-// 	return (0);
-// }
