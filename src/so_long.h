@@ -36,6 +36,8 @@ typedef struct s_game
 int				parse_map(char *is_map);
 int				get_map(int fd, t_map set_map);
 char			**populate_2d_map(t_map new_map, char *line, int index);
+short			get_map_height(char *map);
+char			**set_map(t_map new_map, char *map);
 
 /** so_long.c **/
 // void			start_game(t_game *game);
