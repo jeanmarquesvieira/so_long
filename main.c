@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:18:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/19 19:13:22 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:29:26 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,11 @@ int	main(int argc, char **argv)
 	else
 		return (ft_printf("Invalid number of arguments.\n"));
 	i = 0;
-	while (i < get_map_height(argv[1]))
-		ft_printf("%s", game.set_map.map[i++]);
-	i = 0;
+	// while (i < get_map_height(argv[1]))
+	// ft_printf("%s", game.set_map.map[i++]);
+	// i = 0;
 	check_map(&game.set_map, game.set_map.map, game.set_map.height);
 	get_init_pos(game.set_map, &game.player, game.set_map.height);
-	ft_printf("\nplayer pos x: %d\nplayer pos y: %d\n", game.player.pos_x,
-		game.player.pos_y);
-	while (i < get_map_height(argv[1]))
-	{
-		free(game.set_map.map[i]);
-		i++;
-	}
-	free(game.set_map.map);
+	final_free(game.set_map.map, game.set_map.height);
 	return (0);
 }

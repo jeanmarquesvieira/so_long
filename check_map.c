@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:35:24 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/19 19:14:05 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/19 20:23:39 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,22 @@ void	get_init_pos(t_map new_map, t_player *player, int height)
 	}
 }
 
-// int	flood_fill(char **map_arr, t_game game, t_player player)
+// t_map	flood_fill(char **map_arr, int x, int y)
 // {
-// 	if ()
+// 	t_map	test_map;
+
+// 	if (map_arr[x][y] == 'P')
+// 	{
+// 		if (map_arr[x + 1][y] == '0')
+// 			test_map.empty++;
+// 		else if (map_arr[x + 1][y] == 'C')
+// 			test_map.item++;
+// 		else if (map_arr[x + 1][y] == 'E')
+// 			test_map.exit++;
+// 		map_arr[x + 1][y] = 'V';
+// 		flood_fill(map_arr, x, y++);
+// 	}
+// 	else
+// 		flood_fill(map_arr, x++, y);
+// 	return (test_map);
 // }

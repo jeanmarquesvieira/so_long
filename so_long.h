@@ -43,12 +43,13 @@ char			**set_map(char *map_path, t_map *new_map);
 
 /** print_error.c **/
 void			free_str_arr(char **be_freed);
+void			final_free(char **map, int height);
 void			invalid_map(void);
 
 /** check_map.c **/
 void			check_map(t_map *new_map, char **_2d_map, int height);
 void			get_init_pos(t_map new_map, t_player *player, int height);
-// int				floodfill(char **map_arr, t_map *map);
+// t_map			flood_fill(char **map_arr, int x, int y);
 
 /** so_long.c **/
 // void			start_game(t_game *game);
