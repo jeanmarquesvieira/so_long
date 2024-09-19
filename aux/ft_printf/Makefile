@@ -6,7 +6,7 @@
 #    By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 20:28:54 by jalves-v          #+#    #+#              #
-#    Updated: 2024/09/16 12:25:24 by jalves-v         ###   ########.fr        #
+#    Updated: 2024/09/19 18:09:03 by jalves-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,20 +28,16 @@ all: $(NAME)
 
 $(NAME): $(OBJ_FILES)
 	@ar rc $(NAME) $(OBJ_FILES)
-	@echo "File $(NAME) has been created successfully."
 	@ranlib $(NAME)
-	@echo "File $(NAME) has been indexed successfully."
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(OBJ_FILES)
-	@echo "Object files have been deleted successfully."
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(NAME) has been deleted successfully."
 
 re: fclean all
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
+/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/16 22:49:11 by jeanmarques      ###   ########.fr       */
+/*   Updated: 2024/09/19 14:31:37 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	get_map(int fd, t_map new_map)
 		free(_2d_map);
 		return (1);
 	}
+	free(_2d_map);
 	return (0);
 }
 
@@ -60,9 +61,6 @@ char	**populate_2d_map(t_map new_map, char *line, int index)
 
 	i = 0;
 	line_len = ft_strlen(line);
-	if (line_len != 0 && new_map.length == 0)
-	{
-	}
 	new_map.length = line_len;
 	new_map.map[index] = malloc((sizeof(char) * line_len) + 1);
 	if (!new_map.map[index])
@@ -76,7 +74,7 @@ char	**populate_2d_map(t_map new_map, char *line, int index)
 	return (new_map.map);
 }
 
-int	get_map_height(char *map_path, t_map new_map)
+int	get_map_height(char *map_path)
 {
 	int		fd;
 	int		map_height;
@@ -93,8 +91,6 @@ int	get_map_height(char *map_path, t_map new_map)
 		map_height++;
 		read_map = get_next_line(fd);
 	}
-	free(read_map);
-	new_map.height = map_height;
 	close(fd);
 	if (map_height < 4)
 		invalid_map();
@@ -107,7 +103,7 @@ char	**set_map(char *map_path, t_map *new_map)
 	int	fd;
 	int	check_map;
 
-	map_height = get_map_height(map_path, *new_map);
+	map_height = get_map_height(map_path);
 	fd = open(map_path, O_RDONLY);
 	if (fd < 3)
 		return (NULL);

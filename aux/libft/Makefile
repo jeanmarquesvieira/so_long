@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalves-v <jalves-v@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/19 20:39:54 by jalves-v          #+#    #+#              #
-#    Updated: 2024/04/20 10:14:58 by jalves-v         ###   ########.fr        #
+#    Updated: 2024/09/19 18:15:24 by jalves-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,42 +49,22 @@ SRC = ft_atoi.c \
 	ft_tolower.c \
 	ft_toupper.c \
 
-SRC_BONUS = ft_lstnew.c \
-	ft_lstadd_front.c \
-	ft_lstsize.c \
-	ft_lstlast.c \
-	ft_lstadd_back.c \
-	ft_lstdelone.c \
-	ft_lstclear.c \
-	ft_lstiter.c \
-	ft_lstmap.c \
-
 OBJ_FILES = $(SRC:.c=.o)
-
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all: $(NAME)
 
-bonus: $(NAME) $(OBJ_BONUS)
-	@ar rcs $(NAME) $(OBJ_BONUS)
-	@echo "Bonus files created successfully."
-
 $(NAME): $(OBJ_FILES)
 	@ar rc $(NAME) $(OBJ_FILES)
-	@echo "File $(NAME) has been created successfully."
 	@ranlib $(NAME)
-	@echo "File $(NAME) has been indexed successfully."
 	
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ_FILES) $(OBJ_BONUS)
-	@echo "Object files have been deleted successfully."
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME) has been deleted successfully."
 
 re: fclean all
 
