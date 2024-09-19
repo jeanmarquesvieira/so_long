@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/29 13:36:58 by jalves-v          #+#    #+#              #
-#    Updated: 2024/09/16 19:51:03 by jalves-v         ###   ########.fr        #
+#    Updated: 2024/09/16 21:58:37 by jeanmarques      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ GNL = ../aux/get_next_line/
 FPF = ../aux/ft_printf/
 LIB = ../aux/libft/
 
-SRC_SL = so_long.c main.c parse_map.c print_error.c
+SRC_SL = so_long.c main.c parse_map.c print_error.c check_map.c
 SRC_LIB = $(LIB)ft_split.c $(LIB)ft_calloc.c $(LIB)ft_bzero.c $(LIB)ft_strlen.c $(LIB)ft_strncmp.c $(LIB)ft_strjoin.c
 SRC_GNL = $(GNL)get_next_line.c $(GNL)get_next_line_utils.c
 SRC_FPF = $(FPF)ft_printf.c $(FPF)ft_putchar.c $(FPF)ft_putnbr.c $(FPF)ft_putstr.c

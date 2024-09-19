@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/16 19:53:20 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/16 22:49:11 by jeanmarques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ char	**populate_2d_map(t_map new_map, char *line, int index)
 
 	i = 0;
 	line_len = ft_strlen(line);
+	if (line_len != 0 && new_map.length == 0)
+	{
+	}
+	new_map.length = line_len;
 	new_map.map[index] = malloc((sizeof(char) * line_len) + 1);
 	if (!new_map.map[index])
 		return (free_str_arr(new_map.map), NULL);
@@ -72,14 +76,14 @@ char	**populate_2d_map(t_map new_map, char *line, int index)
 	return (new_map.map);
 }
 
-short	get_map_height(char *map)
+int	get_map_height(char *map_path, t_map new_map)
 {
 	int		fd;
-	short	map_height;
+	int		map_height;
 	char	*read_map;
 
 	map_height = 0;
-	fd = open(map, O_RDONLY);
+	fd = open(map_path, O_RDONLY);
 	if (fd < 3)
 		return (-1);
 	read_map = get_next_line(fd);
@@ -90,28 +94,30 @@ short	get_map_height(char *map)
 		read_map = get_next_line(fd);
 	}
 	free(read_map);
+	new_map.height = map_height;
 	close(fd);
 	if (map_height < 4)
 		invalid_map();
 	return (map_height);
 }
 
-char	**set_map(t_map new_map, char *map)
+char	**set_map(char *map_path, t_map *new_map)
 {
 	int	map_height;
 	int	fd;
 	int	check_map;
 
-	map_height = get_map_height(map);
-	fd = open(map, O_RDONLY);
+	map_height = get_map_height(map_path, *new_map);
+	fd = open(map_path, O_RDONLY);
 	if (fd < 3)
 		return (NULL);
-	new_map.map = malloc((sizeof(char *) * map_height));
-	if (!new_map.map)
-		return (/* free_str_arr(new_map.map), */ NULL);
+	(*new_map).map = malloc((sizeof(char *) * map_height));
+	if (!(*new_map).map)
+		return (/* free_str_arr((*new_map).map), */ NULL);
 	check_map = 1;
 	while (check_map != 0)
-		check_map = get_map(fd, new_map);
+		check_map = get_map(fd, (*new_map));
+	(*new_map).height = map_height;
 	close(fd);
-	return (new_map.map);
+	return ((*new_map).map);
 }

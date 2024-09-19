@@ -15,6 +15,8 @@ typedef struct s_map
 	int			exit;
 	int			start;
 	int			exit_game;
+	int			height;
+	int			length;
 }				t_map;
 
 typedef struct s_player
@@ -35,12 +37,15 @@ typedef struct s_game
 int				parse_map(char *is_map);
 int				get_map(int fd, t_map set_map);
 char			**populate_2d_map(t_map new_map, char *line, int index);
-short			get_map_height(char *map);
-char			**set_map(t_map new_map, char *map);
+int				get_map_height(char *map_path, t_map new_map);
+char			**set_map(char *map_path, t_map *new_map);
 
 /** print_error.c **/
 void			free_str_arr(char **be_freed);
 void			invalid_map(void);
+
+/** check_map.c **/
+void			check_map(t_map *new_map);
 
 /** so_long.c **/
 // void			start_game(t_game *game);
