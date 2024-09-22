@@ -8,7 +8,7 @@ PRINTF = aux/ft_printf/libftprintf.a
 LIBFT = aux/libft/libft.a
 MLX = minilibx-linux/libmlx.a
 
-SRC = so_long.c main.c parse_map.c print_error.c check_map.c aux/get_next_line/get_next_line.c aux/get_next_line/get_next_line_utils.c
+SRC = so_long.c main.c parse_map.c print_error.c check_map.c check_map2.c aux/get_next_line/get_next_line.c aux/get_next_line/get_next_line_utils.c
 
 OBJ = $(SRC:.c=.o)
 

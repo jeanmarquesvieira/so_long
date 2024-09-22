@@ -49,8 +49,14 @@ void			invalid_map(void);
 /** check_map.c **/
 void			check_map(t_map *new_map, char **_2d_map, int height);
 void			get_init_pos(t_map new_map, t_player *player, int height);
-t_map			flood_fill(char **map_arr, t_map map, int x, int y);
+char			**flood_fill(char **map_arr, t_map map, int x, int y);
+int				check_flood_fill(char **is_map);
 void			print_map(char **map);
+
+/** check_map2.c **/
+int				is_map(t_map map, int count);
+void			validate_map(t_game game);
+int				is_wall(char **map_arr, t_map map);
 
 /** so_long.c **/
 // void			start_game(t_game *game);
