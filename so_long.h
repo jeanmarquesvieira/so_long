@@ -49,7 +49,8 @@ void			invalid_map(void);
 /** check_map.c **/
 void			check_map(t_map *new_map, char **_2d_map, int height);
 void			get_init_pos(t_map new_map, t_player *player, int height);
-// t_map			flood_fill(char **map_arr, int x, int y);
+t_map			flood_fill(char **map_arr, t_map map, int x, int y);
+void			print_map(char **map);
 
 /** so_long.c **/
 // void			start_game(t_game *game);
