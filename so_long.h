@@ -57,6 +57,7 @@ void			print_map(char **map);
 int				is_map(t_map map, int count);
 void			validate_map(t_game game);
 int				is_wall(char **map_arr, t_map map);
+int				is_map_rectangular(char **map, int length, int height);
 
 /** so_long.c **/
 // void			start_game(t_game *game);

@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/22 16:10:23 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/24 21:41:12 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,26 @@ int	is_wall(char **map_arr, t_map map)
 	return (1);
 }
 
+int	is_map_rectangular(char **map, int length, int height)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+			j++;
+		if (j != length)
+			return (0);
+		i++;
+	}
+	if (i != height)
+		return (0);
+	return (1);
+}
+
 void	validate_map(t_game game)
 {
 	char	**map_arr;
@@ -63,11 +83,14 @@ void	validate_map(t_game game)
 	get_init_pos(game.set_map, &game.player, game.set_map.height);
 	map_arr = flood_fill(game.set_map.map, game.set_map, game.player.pos_x,
 			game.player.pos_y);
-	count = check_flood_fill(map_arr);
-	printf("is_wall: %d\n", is_wall(game.set_map.map, game.set_map));
-	if (is_map(game.set_map, count))
-		ft_printf("map is valid\n");
-	else
-		ft_printf("invalid map\n");
+	// count = check_flood_fill(map_arr);
+	// ft_printf("is_wall: %d\n", is_wall(game.set_map.map, game.set_map));
+	count = is_map_rectangular(game.set_map.map, game.set_map.length,
+			game.set_map.height);
+	ft_printf("count %d\n", count);
+	// if (is_map(game.set_map, count))
+	// ft_printf("map is valid\n");
+	// else
+	// ft_printf("invalid map\n");
 	print_map(map_arr);
 }

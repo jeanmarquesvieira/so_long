@@ -3,5 +3,6 @@
         "so_long.h": "c",
         "libft.h": "c",
         "mlx.h": "c"
-    }
+    },
+    "makefile.configureOnOpen": false
 }
