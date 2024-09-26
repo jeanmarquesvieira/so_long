@@ -34,6 +34,15 @@ typedef struct s_game
 	int			moves;
 }				t_game;
 
+typedef struct s_graph
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_graph;
+
 /** parse_map.c **/
 int				parse_map(char *is_map);
 int				get_map(int fd, t_map set_map);
