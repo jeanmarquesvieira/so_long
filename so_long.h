@@ -54,7 +54,7 @@ int				check_flood_fill(char **is_map);
 
 /** check_map2.c **/
 int				is_map(t_map map, int count);
-void			validate_map(t_game game);
+int				validate_map(t_game game);
 int				is_wall(char **map_arr, t_map map);
 int				is_map_rectangular(char **map, int length, int height);
 void			map_count(t_map *map);
@@ -62,7 +62,7 @@ void			map_count(t_map *map);
 /** aux.c **/
 void			free_str(char **str);
 void			print_map(char **map, int height);
-int			check_rows(char **map, int height);
+int				check_rows(char **map, int height);
 
 /** so_long.c **/
 // void			start_game(t_game *game);

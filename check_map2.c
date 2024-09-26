@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/26 12:48:10 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/26 13:11:32 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	is_map_rectangular(char **map, int length, int height)
 	return (1);
 }
 
-void	validate_map(t_game game)
+int	validate_map(t_game game)
 {
 	char	**map_arr;
 	int		count;
@@ -90,16 +90,15 @@ void	validate_map(t_game game)
 	is_rectangular = is_map_rectangular(game.set_map.map, game.set_map.length,
 			game.set_map.height);
 	map_count(&game.set_map);
-	if (is_map(game.set_map, count) && is_rectangular
-		&& game.set_map.map_is_valid && check_walls)
-		ft_printf("Map is valid\n");
-	else
+	if (!is_map(game.set_map, count) || !is_rectangular
+		|| !game.set_map.map_is_valid || !check_walls)
 	{
 		ft_printf("Invalid map.\n");
 		free_str(map_arr);
-		exit(1);
+		return (-1);
 	}
 	free_str(map_arr);
+	return (0);
 }
 
 void	map_count(t_map *map)
