@@ -8,7 +8,9 @@ PRINTF = aux/ft_printf/libftprintf.a
 LIBFT = aux/libft/libft.a
 MLX = minilibx-linux/libmlx.a
 
-SRC = so_long.c main.c parse_map.c print_error.c check_map.c check_map2.c aux/get_next_line/get_next_line.c aux/get_next_line/get_next_line_utils.c
+SRC_GNL = aux/get_next_line/get_next_line.c aux/get_next_line/get_next_line_utils.c
+
+SRC = so_long.c main.c parse_map.c print_error.c check_map.c check_map2.c aux.c $(SRC_GNL)
 
 OBJ = $(SRC:.c=.o)
 
@@ -57,8 +59,14 @@ fclean: clean
 
 re: fclean all
 
-run: re
+run: all
 	@echo "${YELLOW}Running $(NAME)...${RESET}"
 	@./$(NAME) maps/map1.ber
 
-.PHONY: all, clean, fclean, re, run
+va: all
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/map1.ber 
+
+v: all
+	@valgrind ./$(NAME) maps/map1.ber 
+
+.PHONY: all, clean, fclean, re, run, va, v

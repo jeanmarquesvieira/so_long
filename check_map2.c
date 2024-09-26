@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/24 21:41:12 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/26 12:48:10 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ int	is_wall(char **map_arr, t_map map)
 	i = 0;
 	while (i >= 0 && i < map.height)
 	{
-		j = 1;
-		while (j > 0 && j < map.length - 1)
+		j = 0;
+		while (j >= 0 && j < map.length - 1)
 		{
-			if ((j == 0 || j == map.length - 1) && map_arr[i][j] != '1')
+			if ((j == 0 || j == map.length - 2) && map_arr[i][j] != '1')
 				return (0);
 			j++;
 		}
@@ -60,12 +60,12 @@ int	is_map_rectangular(char **map, int length, int height)
 	int	j;
 
 	i = 0;
-	while (map[i])
+	while (i < height)
 	{
 		j = 0;
-		while (map[i][j])
+		while (map[i][j] && map[i][j] != '\n')
 			j++;
-		if (j != length)
+		if (j + 1 != length)
 			return (0);
 		i++;
 	}
@@ -78,19 +78,32 @@ void	validate_map(t_game game)
 {
 	char	**map_arr;
 	int		count;
+	int		is_rectangular;
+	int		check_walls;
 
 	check_map(&game.set_map, game.set_map.map, game.set_map.height);
 	get_init_pos(game.set_map, &game.player, game.set_map.height);
+	check_walls = is_wall(game.set_map.map, game.set_map);
 	map_arr = flood_fill(game.set_map.map, game.set_map, game.player.pos_x,
 			game.player.pos_y);
-	// count = check_flood_fill(map_arr);
-	// ft_printf("is_wall: %d\n", is_wall(game.set_map.map, game.set_map));
-	count = is_map_rectangular(game.set_map.map, game.set_map.length,
+	count = check_flood_fill(map_arr);
+	is_rectangular = is_map_rectangular(game.set_map.map, game.set_map.length,
 			game.set_map.height);
-	ft_printf("count %d\n", count);
-	// if (is_map(game.set_map, count))
-	// ft_printf("map is valid\n");
-	// else
-	// ft_printf("invalid map\n");
-	print_map(map_arr);
+	map_count(&game.set_map);
+	if (is_map(game.set_map, count) && is_rectangular
+		&& game.set_map.map_is_valid && check_walls)
+		ft_printf("Map is valid\n");
+	else
+	{
+		ft_printf("Invalid map.\n");
+		free_str(map_arr);
+		exit(1);
+	}
+	free_str(map_arr);
+}
+
+void	map_count(t_map *map)
+{
+	if ((*map).exit == 1 && (*map).start == 1 && (*map).item >= 1)
+		(*map).map_is_valid = 1;
 }
