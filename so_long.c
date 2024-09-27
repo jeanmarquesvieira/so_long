@@ -6,33 +6,38 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:28:20 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/27 11:45:02 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:03:37 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	draw_map(t_graph graph, t_map map)
+void	draw_map(t_graph graph, t_map *new_map)
 {
-	void	*sprite;
-	int		x;
-	int		y;
-	int		i;
-	int		j;
+	int	x;
+	int	y;
+	int	i;
+	int	j;
 
-	x = map.length;
-	y = map.height;
-	sprite = mlx_xpm_file_to_image(graph.mlx, "./sprites/wall.xpm", &y, &x);
+	graph = sprite_paths(&graph, *new_map);
+	x = 8;
+	y = (*new_map).height;
 	i = 0;
-	ft_printf("length: %d\n", map.length);
-	while (i < map.height)
+	ft_printf("length: %d\n", (*new_map).length);
+	while (i < (*new_map).height)
 	{
 		j = 0;
 		while (j < 13)
 		{
-			if (map.map[i][j] == '1')
-				mlx_put_image_to_window(graph.mlx, graph.win, sprite, i
-					* map.height, j * 12);
+			if ((*new_map).map[i][j] == '1')
+				mlx_put_image_to_window(graph.mlx, graph.win, graph.wall_s.img,
+					i * 32, j * 32);
+			else if ((*new_map).map[i][j] == 'P')
+				mlx_put_image_to_window(graph.mlx, graph.win,
+					graph.player_s.img, i * 32, j * 32);
+			else if ((*new_map).map[i][j] == 'C')
+				mlx_put_image_to_window(graph.mlx, graph.win, graph.item_s.img,
+					i * 32, j * 32);
 			j++;
 		}
 		i++;
@@ -42,6 +47,7 @@ void	draw_map(t_graph graph, t_map map)
 int	handle_close(t_graph graph)
 {
 	mlx_destroy_window(graph.mlx, graph.win);
+	// mlx_clear_window(graph.mlx, graph.win);
 	exit(0);
 }
 

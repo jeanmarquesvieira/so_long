@@ -78,7 +78,7 @@ int				check_flood_fill(char **is_map);
 
 /** check_map2.c **/
 int				is_map(t_map map, int count);
-int				validate_map(t_game game);
+int				validate_map(t_game *game);
 int				is_wall(char **map_arr, t_map map);
 int				is_map_rectangular(char **map, int length, int height);
 void			map_count(t_map *map);
@@ -89,9 +89,12 @@ void			print_map(char **map, int height);
 // int				check_rows(char **map, int height);
 
 /** so_long.c **/
-void			draw_map(t_graph graph, t_map map);
+void			draw_map(t_graph graph, t_map *map);
 int				key_handler(int keycode, t_graph graph, t_game game);
 int				handle_close(t_graph graph);
 // void			start_game(t_game *game);
+
+/** game_aux.c **/
+t_graph			sprite_paths(t_graph *graph, t_map map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:18:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/27 11:41:18 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/27 12:32:07 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		if (parse_map(argv[1]))
 			return (ft_printf("Map format must be \".ber\".\n"));
 		game.set_map.map = set_map(argv[1], &game, &game.set_map);
-		i = validate_map(game);
+		i = validate_map(&game);
 		ft_printf("main %d\n", game.set_map.length);
 		if (i == -1)
 		{
@@ -43,8 +43,8 @@ int	main(int argc, char **argv)
 	else
 		return (ft_printf("Invalid number of arguments.\n"));
 	graph.mlx = mlx_init();
-	graph.win = mlx_new_window(graph.mlx, 384, 256, "so_long");
-	draw_map(graph, game.set_map);
+	graph.win = mlx_new_window(graph.mlx, 256, 384, "so_long");
+	draw_map(graph, &game.set_map);
 	mlx_hook(graph.win, 2, 1L << 0, key_handler, &graph);
 	mlx_hook(graph.win, 17, 1L << 0, handle_close, &graph);
 	mlx_loop(graph.mlx);
