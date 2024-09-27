@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:18:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/27 12:32:07 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/27 13:07:36 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	main(int argc, char **argv)
 			return (ft_printf("Map format must be \".ber\".\n"));
 		game.set_map.map = set_map(argv[1], &game, &game.set_map);
 		i = validate_map(&game);
-		ft_printf("main %d\n", game.set_map.length);
 		if (i == -1)
 		{
 			final_free(game.set_map.map, game.set_map.height);

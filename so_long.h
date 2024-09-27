@@ -31,6 +31,7 @@ typedef struct s_game
 	t_map		set_map;
 	t_player	player;
 	int			game_is_over;
+	int			items_num;
 	int			moves;
 }				t_game;
 
@@ -91,10 +92,11 @@ void			print_map(char **map, int height);
 /** so_long.c **/
 void			draw_map(t_graph graph, t_map *map);
 int				key_handler(int keycode, t_graph graph, t_game game);
-int				handle_close(t_graph graph);
+int				handle_close(t_graph *graph);
 // void			start_game(t_game *game);
 
 /** game_aux.c **/
 t_graph			sprite_paths(t_graph *graph, t_map map);
+void			move_player(t_graph graph, t_game *game, int pos_y, int pos_x);
 
 #endif
