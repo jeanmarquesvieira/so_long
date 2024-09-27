@@ -34,13 +34,28 @@ typedef struct s_game
 	int			moves;
 }				t_game;
 
+typedef struct s_sprite
+{
+	int			width;
+	int			height;
+	void		*img;
+}				t_sprite;
+
 typedef struct s_graph
 {
 	void		*img;
+	void		*mlx;
+	void		*win;
 	char		*addr;
+	t_sprite	wall_s;
+	t_sprite	item_s;
+	t_sprite	exit_s;
+	t_sprite	player_s;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+	int			moves;
+	int			items_found;
 }				t_graph;
 
 /** parse_map.c **/
@@ -48,7 +63,7 @@ int				parse_map(char *is_map);
 int				get_map(int fd, t_map set_map);
 char			**populate_2d_map(t_map new_map, char *line, int index);
 int				get_map_height(char *map_path);
-char			**set_map(char *map_path, t_map *new_map);
+char			**set_map(char *map_path, t_game *game, t_map *new_map);
 
 /** print_error.c **/
 void			free_str_arr(char **be_freed);
@@ -71,9 +86,12 @@ void			map_count(t_map *map);
 /** aux.c **/
 void			free_str(char **str);
 void			print_map(char **map, int height);
-int				check_rows(char **map, int height);
+// int				check_rows(char **map, int height);
 
 /** so_long.c **/
+void			draw_map(t_graph graph, t_map map);
+int				key_handler(int keycode, t_graph graph, t_game game);
+int				handle_close(t_graph graph);
 // void			start_game(t_game *game);
 
 #endif

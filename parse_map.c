@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/26 13:00:20 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:52:47 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	get_map_height(char *map_path)
 	return (map_height);
 }
 
-char	**set_map(char *map_path, t_map *new_map)
+char	**set_map(char *map_path, t_game *game, t_map *new_map)
 {
 	int	map_height;
 	int	fd;
@@ -113,7 +113,7 @@ char	**set_map(char *map_path, t_map *new_map)
 	check_map = 1;
 	while (check_map != 0)
 		check_map = get_map(fd, (*new_map));
-	(*new_map).height = map_height;
+	(*game).set_map.height = map_height;
 	close(fd);
 	return ((*new_map).map);
 }

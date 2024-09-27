@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:35:24 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/26 12:58:17 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/27 11:42:00 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ static char	**flood_fill_aux(char **map_arr, t_map map, int x, int y)
 	}
 	return (map_arr);
 }
+
 char	**flood_fill(char **map_arr, t_map map, int x, int y)
 {
 	char	**checked_map;
