@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:18:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 11:59:07 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 16:17:41 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
-	t_graph	graph;
-	t_data	data;
-	int		i;
+	t_game			game;
+	t_graph			graph;
+	static t_data	data;
+	int				i;
 
 	if (argc == 2)
 	{
@@ -25,6 +25,8 @@ int	main(int argc, char **argv)
 		if (parse_map(argv[1]))
 			return (ft_printf("Error.\nMap format must be \".ber\".\n"));
 		game.set_map.map = set_map(argv[1], &game, &game.set_map);
+		if (!game.set_map.map)
+			return (ft_printf("Error loading map.\n"));
 		i = validate_map(&game);
 		if (i == -1)
 		{
@@ -39,7 +41,8 @@ int	main(int argc, char **argv)
 			game.set_map.height * 32, "so_long");
 	data.graph = &graph;
 	data.game = &game;
-	draw_map(graph, &game.set_map, game);
+	sprite_paths(&graph, game.set_map);
+	draw_map(&graph, &game.set_map, game);
 	mlx_hook(graph.win, 2, 1L << 0, key_handler, &data);
 	mlx_hook(graph.win, 17, 1L << 0, handle_close, &graph);
 	mlx_loop(graph.mlx);

@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 10:57:38 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 14:05:10 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	validate_map(t_game *game)
 	if (!is_map((game)->set_map, count) || !is_rectangular
 		|| !(game)->set_map.map_is_valid || !check_walls)
 	{
-		ft_printf("Invalid map.\n");
+		ft_printf("Error.\nInvalid map.\n");
 		free_str(map_arr);
 		return (-1);
 	}

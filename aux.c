@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:51:15 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/26 13:01:25 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 15:33:45 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_str(char **str)
 {
 	int	i;
 
-	if (!str || !*str)
+	if (!str)
 		return ;
 	i = 0;
 	while (str[i])

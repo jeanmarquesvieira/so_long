@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/27 14:40:45 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 15:36:34 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ int	get_map_height(char *map_path)
 	map_height = 0;
 	fd = open(map_path, O_RDONLY);
 	if (fd < 3)
-		return (-1);
+	{
+		ft_printf("Unable to open map file.\n");
+		exit(1);
+	}
 	read_map = get_next_line(fd);
 	while (read_map != NULL)
 	{
@@ -106,8 +109,11 @@ char	**set_map(char *map_path, t_game *game, t_map *new_map)
 	map_height = get_map_height(map_path);
 	fd = open(map_path, O_RDONLY);
 	if (fd < 3)
-		return (NULL);
-	(*new_map).map = malloc((sizeof(char *) * map_height));
+	{
+		ft_printf("Unable to open map file.\n");
+		exit(1);
+	}
+	(*new_map).map = ft_calloc(sizeof(char *), map_height + 1);
 	if (!(*new_map).map)
 		return (/* free_str_arr((*new_map).map), */ NULL);
 	check_map = 1;

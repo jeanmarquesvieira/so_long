@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:35:24 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 11:17:19 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 14:05:56 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	check_map(t_map *new_map, char **_2d_map, int height)
 	int	j;
 
 	i = 0;
+	if (!_2d_map || !*_2d_map)
+		return ;
 	(*new_map).length = ft_strlen(*_2d_map);
-
 	while (i < height)
 	{
 		j = 0;
