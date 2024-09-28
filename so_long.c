@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:28:20 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/27 15:13:17 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 09:16:45 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,20 @@ void	draw_map(t_graph graph, t_map *new_map)
 	}
 }
 
+void	move_player(t_graph *graph, t_game *game, int new_y, int new_x)
+{
+	if (game->set_map.map[new_y][new_x] != '1')
+	{
+		ft_printf("test\n");
+		game->set_map.map[game->player.pos_y][game->player.pos_x] = '0';
+		game->set_map.map[new_y][new_x] = 'P';
+		game->player.pos_y = new_y;
+		game->player.pos_x = new_x;
+		mlx_clear_window(graph->mlx, graph->win);
+		draw_map(*graph, &game->set_map);
+	}
+}
+
 int	handle_close(t_graph *graph)
 {
 	mlx_destroy_window((*graph).mlx, (*graph).win);
@@ -50,80 +64,36 @@ int	handle_close(t_graph *graph)
 	exit(0);
 }
 
-int	key_handler(int keysym, t_graph graph, t_game game)
+int	key_handler(int keysym, t_graph *graph, t_game *game)
 {
 	if (keysym == 0xff1b)
-		handle_close(&graph);
-	else if (keysym == 0xff51 && !game.game_is_over)
-		move_player(graph, &game, game.player.pos_y, game.player.pos_x - 1);
-	else if (keysym == 0xff53 && !game.game_is_over)
-		move_player(graph, &game, game.player.pos_y, game.player.pos_x + 1);
-	else if (keysym == 0xff52 && !game.game_is_over)
-		move_player(graph, &game, game.player.pos_y - 1, game.player.pos_x);
-	else if (keysym == 0xff54 && !game.game_is_over)
-		move_player(graph, &game, game.player.pos_y + 1, game.player.pos_x);
-	// else if (keycode == 2 && !game.game_is_over)
-	// 	update_player_position(graph, (t_point){graph->player.pos.px_x + 1,
-	// 												graph->player.pos.px_y});
-	// else if (keycode == 0 && !graph->won)
-	// 	update_player_position(graph, (t_point){graph->player.pos.px_x - 1,
-	// 												graph->player.pos.px_y});
-	// else if (keycode == 13 && !graph->won)
-	// 	update_player_position(graph, (t_point){graph->player.pos.px_x,
-	// 											graph->player.pos.px_y - 1});
-	// else if (keycode == 1 && !graph->won)
-	// 	update_player_position(graph, (t_point){graph->player.pos.px_x,
-	// 											graph->player.pos.px_y + 1});
+		handle_close(graph);
+	else if (keysym == 0xff51 && !(*game).game_is_over)
+	{
+		ft_printf("left\n");
+		move_player(graph, game, (*game).player.pos_y, (*game).player.pos_x
+			- 1);
+	}
+	else if (keysym == 0xff53 && !(*game).game_is_over)
+	{
+		ft_printf("right\n");
+		move_player(graph, game, (*game).player.pos_y, (*game).player.pos_x
+			+ 1);
+	}
+	else if (keysym == 0xff52 && !(*game).game_is_over)
+	{
+		ft_printf("up\n");
+		move_player(graph, game, (*game).player.pos_y - 1,
+			(*game).player.pos_x);
+	}
+	else if (keysym == 0xff54 && !(*game).game_is_over)
+	{
+		ft_printf("down\n");
+		move_player(graph, game, (*game).player.pos_y + 1,
+			(*game).player.pos_x);
+	}
 	return (0);
 }
-
-void	update_player_position(t_graph *graph, t_game game)
-{
-	ft_printf("Total moves: %d\n", ++game.moves);
-	if (game.player.pos_x < game.set_map.height
-		&& game.player.pos_y < game.set_map.height)
-	{
-		if (game.set_map.map[game.player.pos_y][game.player.pos_x] == 'C')
-		{
-			game.items_num++;
-			game.set_map.map[game.player.pos_y][game.player.pos_x] = '0';
-			if (game.items_num == game.set_map.item)
-				game.set_map.exit_game = 1;
-		}
-		else if (game.set_map.map[game.player.pos_y][game.player.pos_x] == 'E'
-			&& game.set_map.exit_game == 1)
-		{
-			// vars->player.pos = np;
-			game.game_is_over = 1;
-		}
-		// else if (game.set_map.map[game.player.pos_y][game.player.pos_x] != '1')
-		// vars->player.pos = np;
-	}
-}
-
-// void	update_player_position(t_vars *vars, t_point np)
-// {
-// 	ft_printf("Total moves: %d\n", ++vars->moves);
-// 	if (np.px_x < vars->map.g_w && np.px_y < vars->map.g_h)
-// 	{
-// 		if (vars->map.grid[np.px_y][np.px_x] == COLLECT)
-// 		{
-// 			vars->collected++;
-// 			vars->map.grid[np.px_y][np.px_x] = FLOOR;
-// 			if (vars->collected == vars->collectibles)
-// 				vars->exit_unlocked = 1;
-// 			vars->player.pos = np;
-// 		}
-// 		else if (vars->map.grid[np.px_y][np.px_x] == EXIT
-// 			&& vars->exit_unlocked)
-// 		{
-// 			vars->player.pos = np;
-// 			vars->won = 1;
-// 		}
-// 		else if (vars->map.grid[np.px_y][np.px_x] != WALL)
-// 			vars->player.pos = np;
-// 	}
-// }
 
 void	compose_map(t_graph graph, t_sprite sprite, char block)
 {

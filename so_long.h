@@ -91,12 +91,13 @@ void			print_map(char **map, int height);
 
 /** so_long.c **/
 void			draw_map(t_graph graph, t_map *map);
-int				key_handler(int keycode, t_graph graph, t_game game);
+int				key_handler(int keysym, t_graph *graph, t_game *game);
 int				handle_close(t_graph *graph);
 // void			start_game(t_game *game);
 
 /** game_aux.c **/
 t_graph			sprite_paths(t_graph *graph, t_map map);
-void			move_player(t_graph graph, t_game *game, int pos_y, int pos_x);
+// void			move_player(t_graph graph, t_game *game, int pos_y, int pos_x);
+void			move_player(t_graph *graph, t_game *game, int new_y, int new_x);
 
 #endif
