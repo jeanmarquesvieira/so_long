@@ -109,4 +109,6 @@ void			move_player(t_data *data, int new_y, int new_x);
 int				handle_close(t_data *data);
 int				key_handler(int keysym, t_data *data);
 
+int				check_wrong_values(char **map);
+
 #endif

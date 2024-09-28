@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:18:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 16:17:41 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 17:04:47 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int argc, char **argv)
 		game.set_map.map = set_map(argv[1], &game, &game.set_map);
 		if (!game.set_map.map)
 			return (ft_printf("Error loading map.\n"));
+		if (check_wrong_values(game.set_map.map) == -1)
+			exit(ft_printf("Error.\nInvalid map.\n"));
 		i = validate_map(&game);
 		if (i == -1)
 		{

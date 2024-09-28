@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:35:24 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 14:05:56 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 17:05:01 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,28 @@ static char	**flood_fill_aux(char **map_arr, t_map map, int x, int y)
 	return (map_arr);
 }
 
+int	check_wrong_values(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (map[i][j] != '0' && map[i][j] != 'E' && map[i][j] != '1'
+				&& map[i][j] != 'P' && map[i][j] && map[i][j] != 'C'
+				&& map[i][j] != '\n')
+				return (-1);
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
 char	**flood_fill(char **map_arr, t_map map, int x, int y)
 {
 	char	**checked_map;
@@ -117,6 +139,8 @@ char	**flood_fill(char **map_arr, t_map map, int x, int y)
 	}
 	checked_map[i] = NULL;
 	flood_fill_aux(checked_map, map, x, y);
+	// if (checked_map == NULL)
+	// 	exit(0);
 	return (checked_map);
 }
 
