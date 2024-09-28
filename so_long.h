@@ -99,11 +99,17 @@ void			print_map(char **map, int height);
 void			draw_map(t_graph graph, t_map *map, t_game game);
 int				key_handler(int keysym, t_data *data);
 int				handle_close(t_graph *graph);
+void			check_end_game(t_game game, t_graph graph, char curr,
+					int moves);
 // void			start_game(t_game *game);
 
 /** game_aux.c **/
 t_graph			sprite_paths(t_graph *graph, t_map map);
 // void			move_player(t_graph graph, t_game *game, int pos_y, int pos_x);
 void			move_player(t_graph *graph, t_game *game, int new_y, int new_x);
+
+/** handle_game.c **/
+int				handle_close(t_graph *graph);
+int				key_handler(int keysym, t_data *data);
 
 #endif
