@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/27 12:40:09 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 10:57:38 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_map(t_map map, int count)
 {
 	int	count_map;
 
-	count_map = map.empty + map.exit + map.item;
+	count_map = map.empty + map.item + map.exit;
 	if (count_map == count)
 		return (1);
 	return (0);

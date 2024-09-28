@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:49:25 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 09:16:31 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 11:00:13 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ t_graph	sprite_paths(t_graph *graph, t_map map)
 			"./sprites/wall.xpm", &map.height, &map.length);
 	(graph)->item_s.img = mlx_xpm_file_to_image((graph)->mlx,
 			"./sprites/item.xpm", &map.height, &map.length);
+	(graph)->exit_s.img = mlx_xpm_file_to_image((graph)->mlx,
+			"./sprites/exit.xpm", &map.height, &map.length);
 	return (*graph);
 }

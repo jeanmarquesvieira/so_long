@@ -1,5 +1,5 @@
 NAME = so_long
-CC = cc
+CC = cc -g
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 MLX_FLAGS = -Lminilibx-linux -lmlx_Linux -lX11 -lXext

@@ -6,11 +6,12 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:35:24 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/27 11:42:00 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 11:17:19 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include <stdio.h>
 
 void	check_map(t_map *new_map, char **_2d_map, int height)
 {
@@ -19,6 +20,7 @@ void	check_map(t_map *new_map, char **_2d_map, int height)
 
 	i = 0;
 	(*new_map).length = ft_strlen(*_2d_map);
+
 	while (i < height)
 	{
 		j = 0;
