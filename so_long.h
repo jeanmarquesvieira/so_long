@@ -59,6 +59,12 @@ typedef struct s_graph
 	int			items_found;
 }				t_graph;
 
+typedef struct s_data
+{
+	t_graph		*graph;
+	t_game		*game;
+}				t_data;
+
 /** parse_map.c **/
 int				parse_map(char *is_map);
 int				get_map(int fd, t_map set_map);
@@ -91,7 +97,7 @@ void			print_map(char **map, int height);
 
 /** so_long.c **/
 void			draw_map(t_graph graph, t_map *map);
-int				key_handler(int keysym, t_graph *graph, t_game *game);
+int				key_handler(int keysym, t_data *data);
 int				handle_close(t_graph *graph);
 // void			start_game(t_game *game);
 

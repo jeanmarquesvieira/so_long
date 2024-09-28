@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:28:20 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 09:16:45 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/28 10:23:32 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	draw_map(t_graph graph, t_map *new_map)
 		{
 			if ((*new_map).map[i][j] == '1')
 				mlx_put_image_to_window(graph.mlx, graph.win, graph.wall_s.img,
-					i * 32, j * 32);
+					j * 32, i * 32);
 			else if ((*new_map).map[i][j] == 'P')
 				mlx_put_image_to_window(graph.mlx, graph.win,
-					graph.player_s.img, i * 32, j * 32);
+					graph.player_s.img, j * 32, i * 32);
 			else if ((*new_map).map[i][j] == 'C')
 				mlx_put_image_to_window(graph.mlx, graph.win, graph.item_s.img,
-					i * 32, j * 32);
+					j * 32, i * 32);
 			j++;
 		}
 		i++;
@@ -45,9 +45,11 @@ void	draw_map(t_graph graph, t_map *new_map)
 
 void	move_player(t_graph *graph, t_game *game, int new_y, int new_x)
 {
+	static int	moves;
+
 	if (game->set_map.map[new_y][new_x] != '1')
 	{
-		ft_printf("test\n");
+		ft_printf("Moves: %d\n", ++moves);
 		game->set_map.map[game->player.pos_y][game->player.pos_x] = '0';
 		game->set_map.map[new_y][new_x] = 'P';
 		game->player.pos_y = new_y;
@@ -64,34 +66,27 @@ int	handle_close(t_graph *graph)
 	exit(0);
 }
 
-int	key_handler(int keysym, t_graph *graph, t_game *game)
+int	key_handler(int keysym, t_data *data)
 {
+	t_graph	*graph;
+	t_game	*game;
+
+	game = data->game;
+	graph = data->graph;
 	if (keysym == 0xff1b)
 		handle_close(graph);
 	else if (keysym == 0xff51 && !(*game).game_is_over)
-	{
-		ft_printf("left\n");
 		move_player(graph, game, (*game).player.pos_y, (*game).player.pos_x
 			- 1);
-	}
 	else if (keysym == 0xff53 && !(*game).game_is_over)
-	{
-		ft_printf("right\n");
 		move_player(graph, game, (*game).player.pos_y, (*game).player.pos_x
 			+ 1);
-	}
 	else if (keysym == 0xff52 && !(*game).game_is_over)
-	{
-		ft_printf("up\n");
 		move_player(graph, game, (*game).player.pos_y - 1,
 			(*game).player.pos_x);
-	}
 	else if (keysym == 0xff54 && !(*game).game_is_over)
-	{
-		ft_printf("down\n");
 		move_player(graph, game, (*game).player.pos_y + 1,
 			(*game).player.pos_x);
-	}
 	return (0);
 }
 
