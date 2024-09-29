@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:45:06 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 16:16:46 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/29 08:50:50 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 
 int	handle_close(t_data *data)
 {
-	mlx_destroy_image(data->graph->mlx, data->graph->player_s.img);
-	mlx_destroy_image(data->graph->mlx, data->graph->wall_s.img);
-	mlx_destroy_image(data->graph->mlx, data->graph->exit_s.img);
-	mlx_destroy_image(data->graph->mlx, data->graph->item_s.img);
+	if (data->graph->player_s.img)
+		mlx_destroy_image(data->graph->mlx, data->graph->player_s.img);
+	if (data->graph->wall_s.img)
+		mlx_destroy_image(data->graph->mlx, data->graph->wall_s.img);
+	if (data->graph->exit_s.img)
+		mlx_destroy_image(data->graph->mlx, data->graph->exit_s.img);
+	if (data->graph->item_s.img)
+		mlx_destroy_image(data->graph->mlx, data->graph->item_s.img);
 	mlx_destroy_window(data->graph->mlx, data->graph->win);
 	mlx_destroy_display(data->graph->mlx);
-	free(data->graph->mlx);
+	if (data->graph->mlx != NULL)
+		free(data->graph->mlx);
 	free_str(data->game->set_map.map);
 	exit(0);
 }

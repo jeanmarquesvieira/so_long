@@ -104,11 +104,13 @@ int				key_handler(int keysym, t_data *data);
 t_graph			sprite_paths(t_graph *graph, t_map map);
 // void			move_player(t_graph graph, t_game *game, int pos_y, int pos_x);
 void			move_player(t_data *data, int new_y, int new_x);
+void			check_valid_map(t_game *game, char *map_path);
+// void			init_game(t_data *data, t_graph *graph);
 
 /** handle_game.c **/
 int				handle_close(t_data *data);
 int				key_handler(int keysym, t_data *data);
 
-int				check_wrong_values(char **map);
+int				check_map_cells(char **map);
 
 #endif
