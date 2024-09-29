@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/28 15:36:34 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/29 11:58:03 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	parse_map(char *is_map)
 	return (1);
 }
 
-int	get_map(int fd, t_map new_map)
+static int	get_line(int fd, t_map *new_map)
 {
 	char		*_2d_map;
 	static int	i;
@@ -38,9 +38,10 @@ int	get_map(int fd, t_map new_map)
 	{
 		// new_map.map[i] = 0;
 		// free(_2d_map);
-		return (0);
+		// free_str(new_map->map);
+		return (-1);
 	}
-	new_map.map = populate_2d_map(new_map, _2d_map, i);
+	new_map->map = populate_2d_map(new_map, _2d_map, i);
 	i++;
 	j = 0;
 	while (_2d_map[j])
@@ -54,24 +55,24 @@ int	get_map(int fd, t_map new_map)
 	return (0);
 }
 
-char	**populate_2d_map(t_map new_map, char *line, int index)
+char	**populate_2d_map(t_map *new_map, char *line, int index)
 {
 	int	i;
 	int	line_len;
 
 	i = 0;
 	line_len = ft_strlen(line);
-	new_map.length = line_len;
-	new_map.map[index] = malloc((sizeof(char) * line_len) + 1);
-	if (!new_map.map[index])
-		return (free_str_arr(new_map.map), NULL);
+	new_map->length = line_len;
+	new_map->map[index] = malloc((sizeof(char) * line_len) + 1);
+	if (!new_map->map[index])
+		return (/* free_str_arr(new_map->map), free(new_map->map) */, NULL);
 	while (line[i])
 	{
-		new_map.map[index][i] = line[i];
+		new_map->map[index][i] = line[i];
 		i++;
 	}
-	new_map.map[index][i] = '\0';
-	return (new_map.map);
+	new_map->map[index][i] = '\0';
+	return (new_map->map);
 }
 
 int	get_map_height(char *map_path)
@@ -113,12 +114,21 @@ char	**set_map(char *map_path, t_game *game, t_map *new_map)
 		ft_printf("Unable to open map file.\n");
 		exit(1);
 	}
-	(*new_map).map = ft_calloc(sizeof(char *), map_height + 1);
-	if (!(*new_map).map)
+	new_map->map = ft_calloc(sizeof(char *), map_height + 1);
+	if (!new_map->map)
 		return (/* free_str_arr((*new_map).map), */ NULL);
 	check_map = 1;
 	while (check_map != 0)
-		check_map = get_map(fd, (*new_map));
+	{
+		check_map = get_line(fd, new_map);
+		if (check_map == -1)
+		{
+			// free_str(new_map->map);
+			free(new_map->map);
+			close(fd);
+			exit(1);
+		}
+	}
 	(*game).set_map.height = map_height;
 	close(fd);
 	return ((*new_map).map);

@@ -67,8 +67,7 @@ typedef struct s_data
 
 /** parse_map.c **/
 int				parse_map(char *is_map);
-int				get_map(int fd, t_map set_map);
-char			**populate_2d_map(t_map new_map, char *line, int index);
+char			**populate_2d_map(t_map *new_map, char *line, int index);
 int				get_map_height(char *map_path);
 char			**set_map(char *map_path, t_game *game, t_map *new_map);
 
