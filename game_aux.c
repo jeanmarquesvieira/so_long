@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:49:25 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/29 08:13:00 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/09/30 14:16:29 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,6 @@ t_graph	sprite_paths(t_graph *graph, t_map map)
 			"./sprites/exit.xpm", &map.height, &map.length);
 	return (*graph);
 }
-
-// void	init_game(t_data *data, t_graph *graph)
-// {
-// 	sprite_paths(graph, data->game->set_map);
-// 	draw_map(graph, &(data)->game->set_map, *(data)->game);
-// 	mlx_hook(graph->win, 2, 1L << 0, key_handler, &data);
-// 	mlx_hook(graph->win, 17, 1L << 0, handle_close, graph);
-// 	mlx_loop(graph->mlx);
-// }
 
 void	check_valid_map(t_game *game, char *map_path)
 {
