@@ -64,9 +64,9 @@ run: all
 	@./$(NAME) maps/map1.ber
 
 va: all
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/map1.ber 
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/map1.ber
 
 v: all
-	@valgrind ./$(NAME) maps/map1.ber 
+	@valgrind ./$(NAME) maps/map1.ber
 
 .PHONY: all, clean, fclean, re, run, va, v

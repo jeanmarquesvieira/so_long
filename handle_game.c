@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:45:06 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/30 14:10:34 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/01 06:49:15 by jeanmarques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ int	handle_close(t_data *data)
 
 int	key_handler(int keysym, t_data *data)
 {
-	t_graph	*graph;
+	// t_graph	*graph;
 	t_game	*game;
 
 	game = data->game;
-	graph = data->graph;
+	// graph = data->graph;
 	if (keysym == 0xff1b)
 		handle_close(data);
 	else if (keysym == 0xff51)

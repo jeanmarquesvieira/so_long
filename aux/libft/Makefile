@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+         #
+#    By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/19 20:39:54 by jalves-v          #+#    #+#              #
-#    Updated: 2024/09/19 18:15:24 by jalves-v         ###   ########.fr        #
+#    Updated: 2024/10/01 06:51:21 by jeanmarques      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ all: $(NAME)
 $(NAME): $(OBJ_FILES)
 	@ar rc $(NAME) $(OBJ_FILES)
 	@ranlib $(NAME)
-	
+
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
