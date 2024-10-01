@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   game_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
+/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:49:25 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/01 07:31:00 by jeanmarques      ###   ########.fr       */
+/*   Updated: 2024/10/01 17:04:54 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_graph sprite_paths(t_graph *graph, t_map map)
+t_graph	sprite_paths(t_graph *graph, t_map map)
 {
 	(graph)->player_s.img = mlx_xpm_file_to_image((graph)->mlx,
-												  "./sprites/player.xpm", &map.height, &map.length);
+			"./sprites/player.xpm", &map.height, &map.length);
 	(graph)->wall_s.img = mlx_xpm_file_to_image((graph)->mlx,
-												"./sprites/wall.xpm", &map.height, &map.length);
+			"./sprites/wall.xpm", &map.height, &map.length);
 	(graph)->item_s.img = mlx_xpm_file_to_image((graph)->mlx,
-												"./sprites/item.xpm", &map.height, &map.length);
+			"./sprites/item.xpm", &map.height, &map.length);
 	(graph)->exit_s.img = mlx_xpm_file_to_image((graph)->mlx,
-												"./sprites/exit.xpm", &map.height, &map.length);
+			"./sprites/exit.xpm", &map.height, &map.length);
 	return (*graph);
 }
 
-void check_valid_map(t_game *game, char *map_path)
+void	check_valid_map(t_game *game, char *map_path)
 {
-	int is_valid;
+	int	is_valid;
 
 	is_valid = parse_map(map_path);
 	if (is_valid != 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_game.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
+/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:45:06 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/01 06:49:15 by jeanmarques      ###   ########.fr       */
+/*   Updated: 2024/10/01 17:04:46 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,12 @@
 
 int	handle_close(t_data *data)
 {
-	// if (data->graph->player_s.img)
 	mlx_destroy_image(data->graph->mlx, data->graph->player_s.img);
-	// if (data->graph->wall_s.img)
 	mlx_destroy_image(data->graph->mlx, data->graph->wall_s.img);
-	// if (data->graph->exit_s.img)
 	mlx_destroy_image(data->graph->mlx, data->graph->exit_s.img);
-	// if (data->graph->item_s.img)
 	mlx_destroy_image(data->graph->mlx, data->graph->item_s.img);
 	mlx_destroy_window(data->graph->mlx, data->graph->win);
 	mlx_destroy_display(data->graph->mlx);
-	// if (data->graph->mlx != NULL)
 	free(data->graph->mlx);
 	free_str(data->game->set_map.map);
 	exit(0);
@@ -32,11 +27,9 @@ int	handle_close(t_data *data)
 
 int	key_handler(int keysym, t_data *data)
 {
-	// t_graph	*graph;
 	t_game	*game;
 
 	game = data->game;
-	// graph = data->graph;
 	if (keysym == 0xff1b)
 		handle_close(data);
 	else if (keysym == 0xff51)

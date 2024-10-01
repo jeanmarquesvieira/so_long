@@ -111,5 +111,6 @@ int				handle_close(t_data *data);
 int				key_handler(int keysym, t_data *data);
 
 int				check_map_cells(char **map);
+void			free_line_arr(char **map, char *line);
 
 #endif
