@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:54:04 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/01 17:17:48 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:07:55 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ void	free_line_arr(char **map, char *line)
 	}
 	free(map);
 	free(line);
-	ft_printf("Error.\nInvalid map.\n");
-	exit(1);
 }
 
 void	invalid_map(void)
 {
-	ft_printf("Invalid map.\n");
+	ft_printf("Error.\nInvalid map.\n");
 	exit(1);
+}
+void	fd_exit(int fd)
+{
+	close(fd);
+	invalid_map();
 }

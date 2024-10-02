@@ -52,7 +52,6 @@ typedef struct s_graph
 	t_sprite	item_s;
 	t_sprite	exit_s;
 	t_sprite	player_s;
-	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
 	int			moves;
@@ -75,6 +74,7 @@ char			**set_map(char *map_path, t_game *game, t_map *new_map);
 void			free_str_arr(char **be_freed);
 void			final_free(char **map, int height);
 void			invalid_map(void);
+void			fd_exit(int fd);
 
 /** check_map.c **/
 void			check_map(t_map *new_map, char **_2d_map, int height);
@@ -100,7 +100,7 @@ int				key_handler(int keysym, t_data *data);
 // void			start_game(t_game *game);
 
 /** game_aux.c **/
-t_graph			sprite_paths(t_graph *graph, t_map map);
+void			sprite_paths(t_graph *graph, t_map map);
 // void			move_player(t_graph graph, t_game *game, int pos_y, int pos_x);
 void			move_player(t_data *data, int new_y, int new_x);
 void			check_valid_map(t_game *game, char *map_path);

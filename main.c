@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:18:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/01 16:50:15 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/02 17:00:28 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error.\nInvalid number of arguments.\n"));
 	graph.mlx = mlx_init();
 	if (graph.mlx == NULL)
-		return (ft_printf("Error.\nFailed to initiliase MLX."));
+		return (ft_printf("Error.\nFailed to initiliase MLX.\n"));
 	graph.win = mlx_new_window(graph.mlx, (game.set_map.length - 1) * 32,
 			game.set_map.height * 32, "so_long");
 	if (graph.win == NULL)

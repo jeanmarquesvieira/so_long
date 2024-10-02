@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/01 17:57:34 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/02 16:30:39 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	get_line(int fd, t_map *new_map)
 	if (new_map->map == NULL)
 	{
 		return (-1);
-		ft_printf("test\n");
 		free_str(new_map->map);
 		exit(1);
 	}
@@ -65,11 +64,14 @@ char	**populate_2d_map(t_map *new_map, char *line, int index)
 	i = 0;
 	line_len = ft_strlen(line);
 	if (line[line_len - 2] != '1' && line[line_len - 2] != '\0')
+	{
 		free_line_arr(new_map->map, line);
+		return (NULL);
+	}
 	new_map->length = line_len;
 	new_map->map[index] = malloc((sizeof(char) * line_len) + 1);
 	if (!new_map->map[index])
-		return (/* free_str_arr(new_map->map), free(new_map->map), */ NULL);
+		return (NULL);
 	while (line[i])
 	{
 		new_map->map[index][i] = line[i];
@@ -89,7 +91,7 @@ int	get_map_height(char *map_path)
 	fd = open(map_path, O_RDONLY);
 	if (fd < 3)
 	{
-		ft_printf("Unable to open map file.\n");
+		ft_printf("Error.\nUnable to open map file.\n");
 		exit(1);
 	}
 	read_map = get_next_line(fd);
@@ -112,25 +114,18 @@ char	**set_map(char *map_path, t_game *game, t_map *new_map)
 	map_height = get_map_height(map_path);
 	fd = open(map_path, O_RDONLY);
 	if (fd < 3)
-	{
-		ft_printf("Unable to open map file.\n");
-		exit(1);
-	}
+		exit(ft_printf("Error.\nUnable to open map file.\n"));
 	new_map->map = ft_calloc(sizeof(char *), map_height + 1);
 	if (!new_map->map)
-		return (NULL);
+		return (close(fd), NULL);
 	check_map = 1;
 	while (check_map != 0)
 	{
 		check_map = get_line(fd, new_map);
 		if (check_map == -1)
-		{
-			free(new_map->map);
-			close(fd);
-			exit(1);
-		}
+			fd_exit(fd);
 	}
 	game->set_map.height = map_height;
 	close(fd);
-	return ((*new_map).map);
+	return (new_map->map);
 }
