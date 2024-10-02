@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/02 18:46:05 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:04:48 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	validate_map(t_game *game)
 	int		is_rectangular;
 	int		check_walls;
 
+	game->set_map.length = ft_strlen(*game->set_map.map);
 	check_map(&(game)->set_map, (*game).set_map.map, (*game).set_map.height);
 	get_init_pos((*game).set_map, &(game)->player, (game)->set_map.height);
 	check_walls = is_wall((game)->set_map.map, (game)->set_map);

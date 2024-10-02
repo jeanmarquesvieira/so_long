@@ -6,43 +6,52 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:28:20 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/29 08:01:00 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/02 19:48:21 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	draw_map(t_graph *graph, t_map *new_map, t_game game)
+static void	draw_map_aux(t_graph *graph, t_map *new_map, t_game game, int *pos)
 {
-	int	x;
-	int	y;
 	int	i;
 	int	j;
 
-	x = (*new_map).length;
-	y = (*new_map).height;
 	i = 0;
-	while (i < y)
+	while (i < pos[0])
 	{
 		j = 0;
-		while (j < x)
+		while (j < pos[1])
 		{
-			if ((*new_map).map[i][j] == '1')
+			if (new_map->map[i][j] == '1')
 				mlx_put_image_to_window(graph->mlx, graph->win,
 					graph->wall_s.img, j * 32, i * 32);
-			else if ((*new_map).map[i][j] == 'P')
+			else if (new_map->map[i][j] == 'P')
 				mlx_put_image_to_window(graph->mlx, graph->win,
 					graph->player_s.img, j * 32, i * 32);
-			else if ((*new_map).map[i][j] == 'C')
+			else if (new_map->map[i][j] == 'C')
 				mlx_put_image_to_window(graph->mlx, graph->win,
 					graph->item_s.img, j * 32, i * 32);
-			else if (game.game_is_over == 1 && (*new_map).map[i][j] == 'E')
+			else if (game.game_is_over == 1 && new_map->map[i][j] == 'E')
 				mlx_put_image_to_window(graph->mlx, graph->win,
 					graph->exit_s.img, j * 32, i * 32);
 			j++;
 		}
 		i++;
 	}
+}
+
+void	draw_map(t_graph *graph, t_map *new_map, t_game game)
+{
+	int	x;
+	int	y;
+	int	pos[2];
+
+	x = (*new_map).length;
+	y = (*new_map).height;
+	pos[0] = y;
+	pos[1] = x;
+	draw_map_aux(graph, new_map, game, pos);
 }
 
 static void	new_move(int pos_y, int pos_x, t_graph *graph, t_game *game)
