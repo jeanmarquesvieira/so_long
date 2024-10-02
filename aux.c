@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:51:15 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/09/29 11:48:56 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:41:07 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	free_str(char **str)
 {
 	int	i;
 
-	// if (!str)
-	// 	return ;
 	i = 0;
 	while (str[i])
 	{
@@ -40,6 +38,22 @@ void	print_map(char **map, int height)
 		i++;
 	}
 	ft_printf("\n");
+}
+
+void	ft_mlx_error(char **map)
+{
+	free_str(map);
+	ft_printf("Error.\nFailed to initialise MLX.\n");
+	exit(1);
+}
+
+void	ft_window_err(void *mlx, char **map)
+{
+	free_str(map);
+	mlx_destroy_display(mlx);
+	free(mlx);
+	ft_printf("Error.\nFailed to initiliase MLX window.");
+	exit(1);
 }
 
 int	check_map_cells(char **map)

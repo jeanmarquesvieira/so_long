@@ -75,6 +75,7 @@ void			free_str_arr(char **be_freed);
 void			final_free(char **map, int height);
 void			invalid_map(void);
 void			fd_exit(int fd);
+void			ft_window_err(void *mlx, char **map);
 
 /** check_map.c **/
 void			check_map(t_map *new_map, char **_2d_map, int height);
@@ -92,6 +93,7 @@ void			map_count(t_map *map);
 /** aux.c **/
 void			free_str(char **str);
 void			print_map(char **map, int height);
+void			ft_mlx_error(char **map);
 // int				check_rows(char **map, int height);
 
 /** so_long.c **/
