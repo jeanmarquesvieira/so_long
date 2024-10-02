@@ -10,7 +10,7 @@ MLX = minilibx-linux/libmlx.a
 
 SRC_GNL = aux/get_next_line/get_next_line.c aux/get_next_line/get_next_line_utils.c
 
-SRC = so_long.c main.c parse_map.c print_error.c check_map.c check_map2.c aux.c  game_aux.c handle_game.c check_map3.c $(SRC_GNL)
+SRC = so_long.c main.c parse_map.c print_error.c check_map.c check_map2.c aux.c  game_aux.c check_wall.c $(SRC_GNL)
 
 OBJ = $(SRC:.c=.o)
 
