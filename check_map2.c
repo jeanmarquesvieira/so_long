@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/02 16:35:52 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/02 18:46:05 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,6 @@ int	is_map(t_map map, int count)
 	if (count_map == count)
 		return (1);
 	return (0);
-}
-
-int	is_wall(char **map_arr, t_map map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i >= 0 && i < map.height)
-	{
-		j = 0;
-		while (j >= 0 && j < map.length - 1)
-		{
-			if ((i == 0 || i == map.height - 1) && map_arr[i][j] != '1')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i >= 0 && i < map.height)
-	{
-		j = 0;
-		while (j >= 0 && j < map.length - 1)
-		{
-			if ((j == 0 || j == map.length - 2) && map_arr[i][j] != '1')
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
 }
 
 int	is_map_rectangular(char **map, int length, int height)

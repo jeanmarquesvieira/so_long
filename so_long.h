@@ -94,19 +94,15 @@ void			map_count(t_map *map);
 void			free_str(char **str);
 void			print_map(char **map, int height);
 void			ft_mlx_error(char **map);
-// int				check_rows(char **map, int height);
 
 /** so_long.c **/
 void			draw_map(t_graph *graph, t_map *new_map, t_game game);
 int				key_handler(int keysym, t_data *data);
-// void			start_game(t_game *game);
 
 /** game_aux.c **/
 void			sprite_paths(t_graph *graph, t_map map);
-// void			move_player(t_graph graph, t_game *game, int pos_y, int pos_x);
 void			move_player(t_data *data, int new_y, int new_x);
 void			check_valid_map(t_game *game, char *map_path);
-// void			init_game(t_data *data, t_graph *graph);
 
 /** handle_game.c **/
 int				handle_close(t_data *data);
