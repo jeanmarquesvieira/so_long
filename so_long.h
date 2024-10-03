@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 19:48:34 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/02 19:48:34 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/03 09:52:32 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int				key_handler(int keysym, t_data *data);
 
 /** game_aux.c **/
 void			sprite_paths(t_graph *graph, t_map map);
-void			move_player(t_data *data, int new_y, int new_x);
+void			move_player(t_game *game, t_data *data, int new_y, int new_x);
 void			check_valid_map(t_game *game, char *map_path);
 
 /** handle_game.c **/

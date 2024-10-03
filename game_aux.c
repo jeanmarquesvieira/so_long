@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:49:25 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/03 08:37:57 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/03 09:54:21 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ int	key_handler(int keysym, t_data *data)
 	if (keysym == 0xff1b)
 		handle_close(data);
 	else if (keysym == 0xff51)
-		move_player(data, (*game).player.pos_y, (*game).player.pos_x - 1);
+		move_player(game, data, game->player.pos_y, game->player.pos_x - 1);
 	else if (keysym == 0xff53)
-		move_player(data, (*game).player.pos_y, (*game).player.pos_x + 1);
+		move_player(game, data, game->player.pos_y, game->player.pos_x + 1);
 	else if (keysym == 0xff52)
-		move_player(data, (*game).player.pos_y - 1, (*game).player.pos_x);
+		move_player(game, data, game->player.pos_y - 1, game->player.pos_x);
 	else if (keysym == 0xff54)
-		move_player(data, (*game).player.pos_y + 1, (*game).player.pos_x);
+		move_player(game, data, game->player.pos_y + 1, game->player.pos_x);
 	return (0);
 }

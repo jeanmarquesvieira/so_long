@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:28:20 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/03 08:17:21 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/03 09:54:05 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,11 @@ static void	check_end_game(t_data *data, char curr, int moves)
 	}
 }
 
-void	move_player(t_data *data, int new_y, int new_x)
+void	move_player(t_game *game, t_data *data, int new_y, int new_x)
 {
 	static int		moves;
 	static int		exit_game = 0;
-	static t_game	*game;
 
-	game = data->game;
 	check_end_game(data, game->set_map.map[new_y][new_x], moves);
 	if (game->set_map.map[new_y][new_x] != '1')
 	{
@@ -90,7 +88,10 @@ void	move_player(t_data *data, int new_y, int new_x)
 				game->game_is_over = 1;
 		}
 		if (exit_game)
+		{
 			game->set_map.map[game->player.pos_y][game->player.pos_x] = 'E';
+			exit_game = 0;
+		}
 		else
 			game->set_map.map[game->player.pos_y][game->player.pos_x] = '0';
 		if (game->set_map.map[new_y][new_x] == 'E')
