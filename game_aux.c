@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:49:25 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/02 18:52:29 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/03 08:37:57 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	check_valid_map(t_game *game, char *map_path)
 	game->set_map.map = set_map(map_path, game, &(game)->set_map);
 	if (game->set_map.map == NULL)
 	{
-		exit(ft_printf("Error loading map.\n"));
+		exit(ft_printf("Error.\nFailed to load map.\n"));
 	}
 	if (check_map_cells(game->set_map.map) == -1)
 	{
