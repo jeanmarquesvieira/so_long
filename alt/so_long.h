@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 19:48:34 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/04 18:39:34 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/03 10:06:26 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct s_game
 	t_map		set_map;
 	t_player	player;
 	int			game_is_over;
+	int			items_num;
+	int			moves;
 }				t_game;
 
 typedef struct s_sprite
@@ -57,10 +59,15 @@ typedef struct s_graph
 	void		*img;
 	void		*mlx;
 	void		*win;
+	char		*addr;
 	t_sprite	wall_s;
 	t_sprite	item_s;
 	t_sprite	exit_s;
 	t_sprite	player_s;
+	int			line_length;
+	int			endian;
+	int			moves;
+	int			items_found;
 }				t_graph;
 
 typedef struct s_data

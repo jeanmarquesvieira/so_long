@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 14:17:05 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/04 19:37:10 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/04 21:56:18 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	is_map(t_map map, int count)
 {
 	int	count_map;
 
-	count_map = map.empty + map.item + map.exit;
+	ft_printf("count = %d\n", count);
+	count_map = map.item + map.exit;
+	ft_printf("count_map = %d\n", count_map);
 	if (count_map == count)
 		return (1);
 	return (0);
@@ -50,14 +52,14 @@ int	validate_map(t_game *game)
 	int		check_walls;
 
 	game->set_map.length = ft_strlen(*game->set_map.map);
-	check_map(&game->set_map, game->set_map.map,game->set_map.height);
+	check_map(&game->set_map, game->set_map.map, game->set_map.height);
 	get_init_pos(game->set_map, &game->player, game->set_map.height);
 	check_walls = is_wall(game->set_map.map, game->set_map);
-	map_arr = flood_fill(game->set_map.map, game->set_map,
-			game->player.pos_x, game->player.pos_y);
+	map_arr = flood_fill(game->set_map.map, game->set_map, game->player.pos_x,
+			game->player.pos_y);
 	count = check_flood_fill(map_arr);
-	is_rectangular = is_map_rectangular(game->set_map.map,
-			game->set_map.length, game->set_map.height);
+	is_rectangular = is_map_rectangular(game->set_map.map, game->set_map.length,
+			game->set_map.height);
 	map_count(&game->set_map);
 	if (!is_map(game->set_map, count) || !is_rectangular
 		|| !game->set_map.map_is_valid || !check_walls)
