@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 17:54:04 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/02 19:11:05 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/05 10:14:41 by jeanmarques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_str_arr(char **be_freed)
+void free_str_arr(char **be_freed)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (be_freed[i])
@@ -26,9 +26,9 @@ void	free_str_arr(char **be_freed)
 	exit(1);
 }
 
-void	final_free(char **map, int height)
+void final_free(char **map, int height)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (i < height)
@@ -36,9 +36,9 @@ void	final_free(char **map, int height)
 	free(map);
 }
 
-void	free_line_arr(char **map, char *line)
+void free_line_arr(char **map, char *line)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (map[i])
@@ -50,13 +50,13 @@ void	free_line_arr(char **map, char *line)
 	free(line);
 }
 
-void	invalid_map(void)
+void invalid_map(void)
 {
 	ft_printf("Error.\nInvalid map.\n");
 	exit(1);
 }
 
-void	fd_exit(int fd)
+void fd_exit(int fd)
 {
 	close(fd);
 	invalid_map();

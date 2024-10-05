@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   aux.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 11:51:15 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/02 18:41:07 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/05 10:03:54 by jeanmarques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_str(char **str)
+void free_str(char **str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
@@ -25,12 +25,12 @@ void	free_str(char **str)
 	free(str);
 }
 
-void	print_map(char **map, int height)
+void print_map(char **map, int height)
 {
-	int	i;
+	int i;
 
 	if (!map)
-		return ;
+		return;
 	i = 0;
 	while (i < height)
 	{
@@ -40,14 +40,14 @@ void	print_map(char **map, int height)
 	ft_printf("\n");
 }
 
-void	ft_mlx_error(char **map)
+void ft_mlx_error(char **map)
 {
 	free_str(map);
 	ft_printf("Error.\nFailed to initialise MLX.\n");
 	exit(1);
 }
 
-void	ft_window_err(void *mlx, char **map)
+void ft_window_err(void *mlx, char **map)
 {
 	free_str(map);
 	mlx_destroy_display(mlx);
@@ -56,10 +56,10 @@ void	ft_window_err(void *mlx, char **map)
 	exit(1);
 }
 
-int	check_map_cells(char **map)
+int check_map_cells(char **map)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (map[i])
@@ -67,9 +67,7 @@ int	check_map_cells(char **map)
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (map[i][j] != '0' && map[i][j] != 'E' && map[i][j] != '1'
-				&& map[i][j] != 'P' && map[i][j] && map[i][j] != 'C'
-				&& map[i][j] != '\n')
+			if (map[i][j] != '0' && map[i][j] != 'E' && map[i][j] != '1' && map[i][j] != 'P' && map[i][j] && map[i][j] != 'C' && map[i][j] != '\n')
 				return (-1);
 			j++;
 		}

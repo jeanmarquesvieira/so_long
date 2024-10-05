@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:28:20 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/04 21:46:21 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/05 09:21:46 by jeanmarques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	draw_map_aux(t_graph *graph, t_map *new_map, t_game game, int *pos)
+static void draw_map_aux(t_graph *graph, t_map *new_map, t_game game, int *pos)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
 	while (i < pos[0])
@@ -25,27 +25,27 @@ static void	draw_map_aux(t_graph *graph, t_map *new_map, t_game game, int *pos)
 		{
 			if (new_map->map[i][j] == '1')
 				mlx_put_image_to_window(graph->mlx, graph->win,
-					graph->wall_s.img, j * 32, i * 32);
+										graph->wall_s.img, j * 32, i * 32);
 			else if (new_map->map[i][j] == 'P')
 				mlx_put_image_to_window(graph->mlx, graph->win,
-					graph->player_s.img, j * 32, i * 32);
+										graph->player_s.img, j * 32, i * 32);
 			else if (new_map->map[i][j] == 'C')
 				mlx_put_image_to_window(graph->mlx, graph->win,
-					graph->item_s.img, j * 32, i * 32);
+										graph->item_s.img, j * 32, i * 32);
 			else if (game.game_is_over == 1 && new_map->map[i][j] == 'E')
 				mlx_put_image_to_window(graph->mlx, graph->win,
-					graph->exit_s.img, j * 32, i * 32);
+										graph->exit_s.img, j * 32, i * 32);
 			j++;
 		}
 		i++;
 	}
 }
 
-void	draw_map(t_graph *graph, t_map *new_map, t_game game)
+void draw_map(t_graph *graph, t_map *new_map, t_game game)
 {
-	int	x;
-	int	y;
-	int	pos[2];
+	int x;
+	int y;
+	int pos[2];
 
 	x = new_map->length;
 	y = new_map->height;
@@ -54,7 +54,7 @@ void	draw_map(t_graph *graph, t_map *new_map, t_game game)
 	draw_map_aux(graph, new_map, game, pos);
 }
 
-static void	new_move(int pos_y, int pos_x, t_graph *graph, t_game *game)
+static void new_move(int pos_y, int pos_x, t_graph *graph, t_game *game)
 {
 	game->set_map.map[pos_y][pos_x] = 'P';
 	game->player.pos_y = pos_y;
@@ -63,7 +63,7 @@ static void	new_move(int pos_y, int pos_x, t_graph *graph, t_game *game)
 	draw_map(graph, &game->set_map, *game);
 }
 
-static void	check_end_game(t_data *data, char curr, int moves)
+static void check_end_game(t_data *data, char curr, int moves)
 {
 	if (data->game->game_is_over != 0 && curr == 'E')
 	{
@@ -72,10 +72,10 @@ static void	check_end_game(t_data *data, char curr, int moves)
 	}
 }
 
-void	move_player(t_game *game, t_data *data, int new_y, int new_x)
+void move_player(t_game *game, t_data *data, int new_y, int new_x)
 {
-	static unsigned long long	moves;
-	static int					exit_game = 0;
+	static int moves;
+	static int exit_game = 0;
 
 	check_end_game(data, game->set_map.map[new_y][new_x], moves);
 	if (game->set_map.map[new_y][new_x] != '1')
