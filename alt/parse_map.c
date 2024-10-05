@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
+/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/05 10:19:38 by jeanmarques      ###   ########.fr       */
+/*   Updated: 2024/10/05 13:03:53 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int parse_map(char *is_map)
+int	parse_map(char *is_map)
 {
-	int i;
-	int len;
-	const char ber[5] = ".ber";
+	int			i;
+	int			len;
+	const char	ber[5] = ".ber";
 
 	len = ft_strlen(is_map);
 	if (len >= 4)
@@ -27,11 +27,11 @@ int parse_map(char *is_map)
 	return (1);
 }
 
-static int get_line(int fd, t_map *new_map)
+static int	get_line(int fd, t_map *new_map)
 {
-	char *_2d_map;
-	static int i;
-	int j;
+	char		*_2d_map;
+	static int	i;
+	int			j;
 
 	_2d_map = get_next_line(fd);
 	if (_2d_map == NULL)
@@ -56,10 +56,10 @@ static int get_line(int fd, t_map *new_map)
 	return (0);
 }
 
-char **populate_2d_map(t_map *new_map, char *line, int index)
+char	**populate_2d_map(t_map *new_map, char *line, int index)
 {
-	int i;
-	int line_len;
+	int	i;
+	int	line_len;
 
 	i = 0;
 	line_len = ft_strlen(line);
@@ -81,11 +81,11 @@ char **populate_2d_map(t_map *new_map, char *line, int index)
 	return (new_map->map);
 }
 
-int get_map_height(char *map_path)
+int	get_map_height(char *map_path)
 {
-	int fd;
-	int map_height;
-	char *read_map;
+	int		fd;
+	int		map_height;
+	char	*read_map;
 
 	map_height = 0;
 	fd = open(map_path, O_RDONLY);
@@ -105,11 +105,11 @@ int get_map_height(char *map_path)
 	return (map_height);
 }
 
-char **set_map(char *map_path, t_game *game, t_map *new_map)
+char	**set_map(char *map_path, t_game *game, t_map *new_map)
 {
-	int map_height;
-	int fd;
-	int check_map;
+	int	map_height;
+	int	fd;
+	int	check_map;
 
 	map_height = get_map_height(map_path);
 	fd = open(map_path, O_RDONLY);
@@ -123,7 +123,11 @@ char **set_map(char *map_path, t_game *game, t_map *new_map)
 	{
 		check_map = get_line(fd, new_map);
 		if (check_map == -1)
+		{
+			if (new_map->map)
+				free_str(new_map->map);
 			fd_exit(fd);
+		}
 	}
 	game->set_map.height = map_height;
 	close(fd);

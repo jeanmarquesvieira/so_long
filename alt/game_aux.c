@@ -3,39 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   game_aux.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
+/*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:49:25 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/05 10:00:19 by jeanmarques      ###   ########.fr       */
+/*   Updated: 2024/10/05 12:57:59 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void sprite_paths(t_graph *graph, t_map map)
+void	sprite_paths(t_graph *graph, t_map map)
 {
 	graph->player_s.img = mlx_xpm_file_to_image(graph->mlx,
-												"./textures/player.xpm", &map.height, &map.length);
+			"./textures/player.xpm", &map.height, &map.length);
 	graph->wall_s.img = mlx_xpm_file_to_image(graph->mlx, "./textures/wall.xpm",
-											  &map.height, &map.length);
+			&map.height, &map.length);
 	graph->item_s.img = mlx_xpm_file_to_image(graph->mlx, "./textures/item.xpm",
-											  &map.height, &map.length);
+			&map.height, &map.length);
 	graph->exit_s.img = mlx_xpm_file_to_image(graph->mlx, "./textures/exit.xpm",
-											  &map.height, &map.length);
+			&map.height, &map.length);
 }
 
-void check_valid_map(t_game *game, char *map_path)
+void	check_valid_map(t_game *game, char *map_path)
 {
-	int is_valid;
+	int	is_valid;
 
 	is_valid = parse_map(map_path);
 	if (is_valid != 0)
 		exit(ft_printf("Error.\nMap format must be \".ber\".\n"));
 	game->set_map.map = set_map(map_path, game, &(game)->set_map);
 	if (game->set_map.map == NULL)
-	{
 		exit(ft_printf("Error.\nFailed to load map.\n"));
-	}
 	if (check_map_cells(game->set_map.map) == -1)
 	{
 		free_str(game->set_map.map);
@@ -50,7 +48,7 @@ void check_valid_map(t_game *game, char *map_path)
 	}
 }
 
-int handle_close(t_data *data)
+int	handle_close(t_data *data)
 {
 	mlx_destroy_image(data->graph->mlx, data->graph->player_s.img);
 	mlx_destroy_image(data->graph->mlx, data->graph->wall_s.img);
@@ -63,9 +61,9 @@ int handle_close(t_data *data)
 	exit(0);
 }
 
-int key_handler(int keysym, t_data *data)
+int	key_handler(int keysym, t_data *data)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = data->game;
 	if (keysym == 0xff1b)
