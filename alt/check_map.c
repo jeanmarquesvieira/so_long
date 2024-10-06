@@ -6,7 +6,7 @@
 /*   By: jeanmarquesvieira <jeanmarquesvieira@st    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:35:24 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/05 09:56:52 by jeanmarques      ###   ########.fr       */
+/*   Updated: 2024/10/06 18:23:49 by jeanmarques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char **flood_fill(char **map_arr, t_map map, int x, int y)
 	return (checked_map);
 }
 
-int check_flood_fill(char **is_map)
+int check_flood_fill(char **is_map, char **original)
 {
 	int i;
 	int j;
@@ -127,7 +127,7 @@ int check_flood_fill(char **is_map)
 		j = 0;
 		while (is_map[i][j])
 		{
-			if (is_map[i][j] == 'X')
+			if (is_map[i][j] == 'X' && original[i][j] != '0')
 				count++;
 			j++;
 		}
