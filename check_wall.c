@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map3.c                                       :+:      :+:    :+:   */
+/*   check_wall.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 18:42:45 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/02 18:48:21 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/05 13:05:14 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,21 @@ static int	check_left_right(char **map_arr, t_map map)
 {
 	int	i;
 	int	j;
+	int	len;
+	int	temp_len;
 
 	i = 0;
 	while (i >= 0 && i < map.height)
 	{
 		j = 0;
-		while (j >= 0 && j < map.length - 1)
+		len = ft_strlen(map_arr[i]);
+		if (i == 0)
+			temp_len = len;
+		if (len != temp_len && len != temp_len - 1)
+			return (0);
+		while (j >= 0 && j < len - 1)
 		{
-			if ((j == 0 || j == map.length - 2) && map_arr[i][j] != '1')
+			if ((j == 0 || j == len - 2) && map_arr[i][j] != '1')
 				return (0);
 			j++;
 		}

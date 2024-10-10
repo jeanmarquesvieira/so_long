@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/27 12:49:25 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/03 09:54:21 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/05 14:32:22 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	sprite_paths(t_graph *graph, t_map map)
 {
-	(graph)->player_s.img = mlx_xpm_file_to_image((graph)->mlx,
-			"./sprites/player.xpm", &map.height, &map.length);
-	(graph)->wall_s.img = mlx_xpm_file_to_image((graph)->mlx,
-			"./sprites/wall.xpm", &map.height, &map.length);
-	(graph)->item_s.img = mlx_xpm_file_to_image((graph)->mlx,
-			"./sprites/item.xpm", &map.height, &map.length);
-	(graph)->exit_s.img = mlx_xpm_file_to_image((graph)->mlx,
-			"./sprites/exit.xpm", &map.height, &map.length);
+	graph->player_s.img = mlx_xpm_file_to_image(graph->mlx,
+			"./textures/player.xpm", &map.height, &map.length);
+	graph->wall_s.img = mlx_xpm_file_to_image(graph->mlx, "./textures/wall.xpm",
+			&map.height, &map.length);
+	graph->item_s.img = mlx_xpm_file_to_image(graph->mlx, "./textures/item.xpm",
+			&map.height, &map.length);
+	graph->exit_s.img = mlx_xpm_file_to_image(graph->mlx, "./textures/exit.xpm",
+			&map.height, &map.length);
 }
 
 void	check_valid_map(t_game *game, char *map_path)
@@ -33,11 +33,10 @@ void	check_valid_map(t_game *game, char *map_path)
 		exit(ft_printf("Error.\nMap format must be \".ber\".\n"));
 	game->set_map.map = set_map(map_path, game, &(game)->set_map);
 	if (game->set_map.map == NULL)
-	{
 		exit(ft_printf("Error.\nFailed to load map.\n"));
-	}
 	if (check_map_cells(game->set_map.map) == -1)
 	{
+		free_str(game->set_map.map);
 		ft_printf("Error.\nInvalid map.\n");
 		exit(1);
 	}

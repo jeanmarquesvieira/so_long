@@ -6,7 +6,7 @@
 /*   By: jalves-v <jalves-v@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:38:29 by jalves-v          #+#    #+#             */
-/*   Updated: 2024/10/03 09:07:20 by jalves-v         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:24:28 by jalves-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int	parse_map(char *is_map)
 	const char	ber[5] = ".ber";
 
 	len = ft_strlen(is_map);
-	if (len >= 4)
+	if (is_map[len - 5] > 31 && is_map[len - 5] < 127 && is_map[len - 5] != '/')
 	{
-		i = len - 4;
-		return (ft_strncmp(is_map + i, ber, 4));
+		if (len >= 4)
+		{
+			i = len - 4;
+			return (ft_strncmp(is_map + i, ber, 4));
+		}
 	}
 	return (1);
 }
@@ -63,7 +66,7 @@ char	**populate_2d_map(t_map *new_map, char *line, int index)
 
 	i = 0;
 	line_len = ft_strlen(line);
-	if (line[line_len - 2] != '1' && line[line_len - 2] != '\0')
+	if (line_len > 2 && line[line_len - 2] != '1' && line[line_len - 2] != '\0')
 	{
 		free_line_arr(new_map->map, line);
 		return (NULL);
@@ -123,7 +126,11 @@ char	**set_map(char *map_path, t_game *game, t_map *new_map)
 	{
 		check_map = get_line(fd, new_map);
 		if (check_map == -1)
+		{
+			if (new_map->map)
+				free_str(new_map->map);
 			fd_exit(fd);
+		}
 	}
 	game->set_map.height = map_height;
 	close(fd);
