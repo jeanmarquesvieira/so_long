@@ -1,3 +1,3 @@
 # so_long
 
-Help the capybara eat the carrot and exit the game.
+Help the capybara eat the carrots and exit the game.
